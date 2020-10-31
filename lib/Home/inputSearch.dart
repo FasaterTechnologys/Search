@@ -24,13 +24,13 @@ class InputLogState extends State<InputLog> {
 
   void ProverkaPading() {
     if (proverka == "true") {
-      left = 270;
+      left = MediaQuery.of(context).size.width * 0.74;
       height = 0.64;
       iconColor = Colors.blueAccent;
       containerColor = Colors.white;
       setState(() {});
     } else if (proverka == "false") {
-      left = 145;
+      left = MediaQuery.of(context).size.width * 0.4;
       height = 0.0;
       iconColor = null;
       containerColor = null;
@@ -44,13 +44,14 @@ class InputLogState extends State<InputLog> {
   }
 
 //0.6
-  double left = 145;
+  double left;
   double height = 0.0;
   Color iconColor = null;
   Color containerColor = null;
   Color containerSearchColor = Colors.black;
   @override
   Widget build(BuildContext context) {
+    left = MediaQuery.of(context).size.width * 0.4;
     return inputLogin(
         Icons.search, "что искать", SarchController, false, context);
   }
@@ -66,7 +67,7 @@ class InputLogState extends State<InputLog> {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 110, left: 5),
+          padding: const EdgeInsets.only(top: 5),
           child: AnimatedContainer(
             duration: Duration(
               seconds: 4,
@@ -101,41 +102,38 @@ class InputLogState extends State<InputLog> {
         ),
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.98,
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  decoration: BoxDecoration(
-                      color: containerColor,
-                      borderRadius: BorderRadius.circular(60),
-                      border: Border.all(width: 2, color: Colors.grey)),
-                ),
-              ),
-            ),
+            Container(
+                width: MediaQuery.of(context).size.width * 0.98,
+                height: MediaQuery.of(context).size.height * 0.06,
+                decoration: BoxDecoration(
+                    color: containerColor,
+                    borderRadius: BorderRadius.circular(60),
+                    border: Border.all(width: 2, color: Colors.grey))),
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 95, left: 15),
-          child: TextField(
-            focusNode: _focus,
-            controller: controller,
-            obscureText: obsecure,
-            style: TextStyle(fontSize: 20, color: Colors.black),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintStyle: TextStyle(
-                fontSize: 20,
-                color: Color.fromRGBO(153, 155, 158, 1),
+          padding: const EdgeInsets.only(left: 15),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.06,
+            child: TextField(
+              focusNode: _focus,
+              controller: controller,
+              obscureText: obsecure,
+              style: TextStyle(fontSize: 20, color: Colors.black),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintStyle: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(153, 155, 158, 1),
+                ),
+                hintText: hint,
+                //focusedBorder: OutlineInputBorder(
+                //borderSide: BorderSide(color: Colors.black, width: 2),
+                //),
+                //enabledBorder: OutlineInputBorder(
+                //borderSide: BorderSide(color: Colors.black, width: 1),
+                //),
               ),
-              hintText: hint,
-              //focusedBorder: OutlineInputBorder(
-              //borderSide: BorderSide(color: Colors.black, width: 2),
-              //),
-              //enabledBorder: OutlineInputBorder(
-              //borderSide: BorderSide(color: Colors.black, width: 1),
-              //),
             ),
           ),
         ),
@@ -143,7 +141,10 @@ class InputLogState extends State<InputLog> {
           duration: Duration(
             seconds: 4,
           ),
-          padding: EdgeInsets.only(top: 103, left: left),
+          padding: EdgeInsets.only(
+            left: left,
+            top: MediaQuery.of(context).size.height * 0.005,
+          ),
           child: Container(
             width: MediaQuery.of(context).size.width * 0.23,
             height: MediaQuery.of(context).size.height * 0.05,
