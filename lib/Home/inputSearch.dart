@@ -15,9 +15,10 @@ class InputLogState extends State<InputLog> {
   FocusNode _focus = FocusNode();
   String proverka;
   Random random = Random();
-
+  double left;
   @override
   void initState() {
+    left = MediaQuery.of(context).size.width * 0.4;
     super.initState();
     _focus.addListener(_onFocusChange);
   }
@@ -44,14 +45,12 @@ class InputLogState extends State<InputLog> {
   }
 
 //0.6
-  double left;
   double height = 0.0;
   Color iconColor = null;
   Color containerColor = null;
   Color containerSearchColor = Colors.black;
   @override
   Widget build(BuildContext context) {
-    left = MediaQuery.of(context).size.width * 0.4;
     return inputLogin(
         Icons.search, "что искать", SarchController, false, context);
   }
